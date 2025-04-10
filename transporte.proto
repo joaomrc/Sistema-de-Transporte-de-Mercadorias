@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package transporte;
+
+message Mercadoria {
+    int32 id = 1;
+    string descricao = 2;
+    string origem = 3;
+    string destino = 4;
+    float peso = 5;
+}
+
+message ListaMercadorias {
+    repeated Mercadoria mercadorias = 1;
+}
+
+service Transporte {
+    rpc ListarMercadorias (Empty) returns (ListaMercadorias);
+}
+
+message Empty {}
