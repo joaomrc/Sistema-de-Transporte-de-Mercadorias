@@ -1,0 +1,14 @@
+FROM node:18-slim
+
+WORKDIR /app
+
+COPY soap_server.js .
+COPY mercadorias.json .
+COPY xsd/ ./xsd/
+
+RUN npm init -y && \
+    npm install soap xml2js fs
+
+EXPOSE 8000
+
+CMD ["node", "soap_server.js"]

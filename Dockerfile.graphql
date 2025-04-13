@@ -1,0 +1,14 @@
+FROM node:18-slim
+
+WORKDIR /app
+
+COPY graphql_server.js .
+COPY mercadorias.json .
+COPY json_schema/ ./json_schema/
+
+RUN npm init -y && \
+    npm install express express-graphql graphql fs ajv
+
+EXPOSE 4000
+
+CMD ["node", "graphql_server.js"]
