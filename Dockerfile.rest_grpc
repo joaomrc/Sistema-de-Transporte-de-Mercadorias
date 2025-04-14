@@ -1,0 +1,18 @@
+FROM node:18-slim
+
+WORKDIR /app
+
+COPY transporte_mercadorias_server.js .
+COPY transporte.proto .
+COPY mercadorias.json .
+
+RUN npm init -y && \
+    npm install express body-parser protobufjs @grpc/grpc-js @grpc/proto-loader fs ajv jsonpath
+
+# Porta REST
+EXPOSE 3000
+
+# Porta gRPC
+EXPOSE 50051
+
+CMD ["node", "transporte_mercadorias_server.js"]

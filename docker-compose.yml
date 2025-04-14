@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  rest_grpc:
+    build:
+      context: .
+      dockerfile: Dockerfile.rest_grpc
+    ports:
+      - "3000:3000"     # REST
+      - "50051:50051"   # gRPC
+    volumes:
+      - ./mercadorias.json:/app/mercadorias.json
+    container_name: rest_grpc_server
+
+  soap:
+    build:
+      context: .
+      dockerfile: Dockerfile.soap
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./mercadorias.json:/app/mercadorias.json
+      - ./xsd:/app/xsd
+    container_name: soap_server
+
+  graphql:
+    build:
+      context: .
+      dockerfile: Dockerfile.graphql
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./mercadorias.json:/app/mercadorias.json
+      - ./json_schema:/app/json_schema
+    container_name: graphql_server
