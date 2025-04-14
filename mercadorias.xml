@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mercadorias>
+  <mercadoria>
+    <id>1</id>
+    <descricao>Paletes de madeira</descricao>
+    <origem>Lisboa</origem>
+    <destino>Porto</destino>
+    <peso>450.5</peso>
+  </mercadoria>
+  <mercadoria>
+    <id>2</id>
+    <descricao>Electrodomésticos</descricao>
+    <origem>Coimbra</origem>
+    <destino>Braga</destino>
+    <peso>1230.75</peso>
+  </mercadoria>
+</mercadorias>

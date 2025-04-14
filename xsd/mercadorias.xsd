@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="mercadorias">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="mercadoria" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id" type="xs:int" />
+              <xs:element name="descricao" type="xs:string" />
+              <xs:element name="origem" type="xs:string" />
+              <xs:element name="destino" type="xs:string" />
+              <xs:element name="peso" type="xs:float" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>

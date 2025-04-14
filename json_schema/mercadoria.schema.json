@@ -1,0 +1,24 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Mercadoria",
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "integer"
+      },
+      "descricao": {
+        "type": "string"
+      },
+      "origem": {
+        "type": "string"
+      },
+      "destino": {
+        "type": "string"
+      },
+      "peso": {
+        "type": "number"
+      }
+    },
+    "required": ["id", "descricao", "origem", "destino", "peso"]
+  }
+  
