@@ -7,7 +7,7 @@ COPY transporte.proto .
 COPY mercadorias.json .
 
 RUN npm init -y && \
-    npm install express body-parser protobufjs @grpc/grpc-js @grpc/proto-loader fs ajv jsonpath
+    npm install express body-parser protobufjs @grpc/grpc-js @grpc/proto-loader xml2js fs ajv jsonpath
 
 # Porta REST
 EXPOSE 3000

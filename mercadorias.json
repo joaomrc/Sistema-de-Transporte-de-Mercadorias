@@ -1,17 +1,23 @@
 [
-    {
-      "id": 1,
-      "descricao": "Paletes de madeira",
-      "origem": "Lisboa",
-      "destino": "Porto",
-      "peso": 450.5
-    },
-    {
-      "id": 2,
-      "descricao": "Electrodomésticos",
-      "origem": "Coimbra",
-      "destino": "Braga",
-      "peso": 1230.75
-    }
-  ]
-  
+  {
+    "id": 1,
+    "descricao": "Computadores portáteis",
+    "origem": "Lisboa",
+    "destino": "Porto",
+    "peso": 120.5
+  },
+  {
+    "id": 2,
+    "descricao": "Cadeiras de escritório",
+    "origem": "Braga",
+    "destino": "Coimbra",
+    "peso": 300.2
+  },
+  {
+    "id": 3,
+    "descricao": "Monitores LCD",
+    "origem": "Faro",
+    "destino": "Aveiro",
+    "peso": 210.75
+  }
+]

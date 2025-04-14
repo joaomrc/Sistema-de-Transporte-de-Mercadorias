@@ -7,7 +7,7 @@ COPY mercadorias.json .
 COPY xsd/ ./xsd/
 
 RUN npm init -y && \
-    npm install soap xml2js fs
+    npm install soap xml2js fs express
 
 EXPOSE 8000
 

@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mercadorias>
   <mercadoria>
-    <id>1</id>
-    <descricao>Paletes de madeira</descricao>
-    <origem>Lisboa</origem>
-    <destino>Porto</destino>
-    <peso>450.5</peso>
+    <id>4</id>
+    <descricao>Impressoras 3D</descricao>
+    <origem>Leiria</origem>
+    <destino>Setúbal</destino>
+    <peso>85.3</peso>
   </mercadoria>
   <mercadoria>
-    <id>2</id>
-    <descricao>Electrodomésticos</descricao>
-    <origem>Coimbra</origem>
-    <destino>Braga</destino>
-    <peso>1230.75</peso>
+    <id>5</id>
+    <descricao>Mesa de desenho</descricao>
+    <origem>Évora</origem>
+    <destino>Viseu</destino>
+    <peso>120.0</peso>
+  </mercadoria>
+  <mercadoria>
+    <id>6</id>
+    <descricao>Caixas de ferramentas</descricao>
+    <origem>Guimarães</origem>
+    <destino>Funchal</destino>
+    <peso>95.7</peso>
   </mercadoria>
 </mercadorias>
+
