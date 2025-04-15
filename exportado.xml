@@ -1,0 +1,44 @@
+<mercadorias>
+  <mercadoria>
+    <id>1</id>
+    <descricao>Computadores portáteis</descricao>
+    <origem>Lisboa</origem>
+    <destino>Porto</destino>
+    <peso>120.5</peso>
+  </mercadoria>
+  <mercadoria>
+    <id>2</id>
+    <descricao>Cadeiras de escritório</descricao>
+    <origem>Braga</origem>
+    <destino>Coimbra</destino>
+    <peso>300.2</peso>
+  </mercadoria>
+  <mercadoria>
+    <id>3</id>
+    <descricao>Monitores LCD</descricao>
+    <origem>Faro</origem>
+    <destino>Aveiro</destino>
+    <peso>210.75</peso>
+  </mercadoria>
+  <mercadoria>
+    <id>4</id>
+    <descricao>Impressoras 3D</descricao>
+    <origem>Leiria</origem>
+    <destino>Setúbal</destino>
+    <peso>85.3</peso>
+  </mercadoria>
+  <mercadoria>
+    <id>5</id>
+    <descricao>Mesa de desenho</descricao>
+    <origem>Évora</origem>
+    <destino>Viseu</destino>
+    <peso>120</peso>
+  </mercadoria>
+  <mercadoria>
+    <id>6</id>
+    <descricao>Caixas de ferramentas</descricao>
+    <origem>Guimarães</origem>
+    <destino>Funchal</destino>
+    <peso>95.7</peso>
+  </mercadoria>
+</mercadorias>

@@ -1,0 +1,45 @@
+[
+    {
+      "id": 1,
+      "descricao": "Computadores portáteis",
+      "origem": "Lisboa",
+      "destino": "Porto",
+      "peso": 120.5
+    },
+    {
+      "id": 2,
+      "descricao": "Cadeiras de escritório",
+      "origem": "Braga",
+      "destino": "Coimbra",
+      "peso": 300.2
+    },
+    {
+      "id": 3,
+      "descricao": "Monitores LCD",
+      "origem": "Faro",
+      "destino": "Aveiro",
+      "peso": 210.75
+    },
+    {
+      "id": 4,
+      "descricao": "Impressoras 3D",
+      "origem": "Leiria",
+      "destino": "Setúbal",
+      "peso": 85.3
+    },
+    {
+      "id": 5,
+      "descricao": "Mesa de desenho",
+      "origem": "Évora",
+      "destino": "Viseu",
+      "peso": 120
+    },
+    {
+      "id": 6,
+      "descricao": "Caixas de ferramentas",
+      "origem": "Guimarães",
+      "destino": "Funchal",
+      "peso": 95.7
+    }
+  ]
+  
