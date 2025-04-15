@@ -15,7 +15,7 @@
   <ul id="mercadorias"></ul>
 
   <script>
-    fetch("http://rest_grpc_server:3000/mercadorias")
+    fetch("http://localhost:3005/mercadorias")
       .then(response => response.json())
       .then(data => {
         const lista = document.getElementById("mercadorias");
