@@ -85,17 +85,54 @@
         ]
     },
     {
-        "id": 7,
-        "descricao": "Tecidos",
-        "origem": "Bragança",
-        "destino": "Alpiarça",
-        "peso": 13.7
+        "id": [
+            "7"
+        ],
+        "descricao": [
+            "Tecidos"
+        ],
+        "origem": [
+            "Bragança"
+        ],
+        "destino": [
+            "Alpiarça"
+        ],
+        "peso": [
+            "13.7"
+        ]
     },
     {
-        "id": 8,
-        "descricao": "Roupa de inverno",
-        "origem": "Lisboa",
-        "destino": "Porto",
-        "peso": 120
+        "id": [
+            "8"
+        ],
+        "descricao": [
+            "Roupa de inverno"
+        ],
+        "origem": [
+            "Lisboa"
+        ],
+        "destino": [
+            "Porto"
+        ],
+        "peso": [
+            "120"
+        ]
+    },
+    {
+        "id": [
+            "9"
+        ],
+        "descricao": [
+            "Loiças"
+        ],
+        "origem": [
+            "Faro"
+        ],
+        "destino": [
+            "Viseu"
+        ],
+        "peso": [
+            "63.1"
+        ]
     }
 ]

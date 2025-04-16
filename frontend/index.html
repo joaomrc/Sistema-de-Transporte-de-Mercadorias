@@ -16,7 +16,6 @@
       background-color: #005b96;
       color: white;
       padding: 1rem 2rem;
-      text-align: center;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
@@ -36,6 +35,14 @@
       box-shadow: 0 2px 10px rgba(0,0,0,0.05);
       padding: 1.5rem;
       margin-bottom: 1rem;
+      opacity: 0;
+      animation: fadeInCard 0.5s ease forwards;
+      transition: all 0.3s ease;
+    }
+
+    .mercadoria:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
     }
 
     .mercadoria p {
@@ -46,12 +53,20 @@
       color: #005b96;
     }
 
-    form, .actions {
+    form {
       background-color: #fff;
       padding: 1.5rem;
       border-radius: 12px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.05);
       margin-bottom: 2rem;
+      font-family: 'Poppins', sans-serif;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.6s ease forwards;
+    }
+
+    form:nth-of-type(2) {
+      animation-delay: 0.2s;
     }
 
     form input {
@@ -61,6 +76,13 @@
       border: 1px solid #ccc;
       border-radius: 6px;
       font-family: 'Poppins', sans-serif;
+      transition: all 0.3s ease;
+    }
+
+    form input:focus {
+      border-color: #005b96;
+      box-shadow: 0 0 0 2px rgba(0, 91, 150, 0.2);
+      outline: none;
     }
 
     form button, .actions button {
@@ -71,19 +93,84 @@
       padding: 0.6rem 1.2rem;
       border-radius: 6px;
       cursor: pointer;
-      transition: background-color 0.2s;
+      transition: background-color 0.2s, transform 0.2s;
       font-family: 'Poppins', sans-serif;
     }
 
     form button:hover, .actions button:hover {
       background-color: #004377;
+      transform: scale(1.03);
+    }
+
+    #toast {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #005b96;
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      font-size: 1.1rem;
+      z-index: 9999;
+      display: none;
+      animation: fadeInOut 3s forwards;
+    }
+
+    @keyframes fadeInOut {
+      0%   { opacity: 0; }
+      10%  { opacity: 1; }
+      90%  { opacity: 1; }
+      100% { opacity: 0; }
+    }
+
+    #overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: blur(4px);
+    background-color: rgba(255, 255, 255, 0.3); /* leve camada branca transparente */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+    z-index: 9998;
+    }
+
+
+    @keyframes fadeOverlay {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInCard {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   </style>
 </head>
 <body>
+  <div id="overlay"></div>
+
   <header>
     <h1>Lista de Mercadorias</h1>
   </header>
+
   <main>
     <div style="display: flex; gap: 2rem; flex-wrap: wrap;">
       <form id="formAdicionar" style="flex: 1;">
@@ -99,28 +186,54 @@
         <h3>Remover Mercadoria</h3>
         <input type="number" id="idRemover" placeholder="ID da mercadoria" required />
         <button type="submit">Remover</button>
-      </form>
-    </div>
 
-    <div class="actions">
-      <h3>Outras Ações</h3>
-      <button onclick="exportarXML()">Exportar para XML</button>
-      <button onclick="importarXML()">Importar de XML</button>
+        <div style="margin-top: 2rem; border-top: 1px solid #eee; padding-top: 1.5rem;">
+          <h3 style="margin-top: 0; margin-bottom: 0;">Outras Ações</h3>
+          <button type="button" onclick="exportarXML()">Exportar para XML</button>
+          <button type="button" onclick="importarXML()">Importar de XML</button>
+        </div>
+      </form>
     </div>
 
     <div id="lista" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;"></div>
   </main>
 
+  <div id="toast"><span id="toast-message"></span></div>
+
   <script>
+  function mostrarToast(mensagem) {
+    const toast = document.getElementById('toast');
+    const texto = document.getElementById('toast-message');
+    const overlay = document.getElementById('overlay');
+
+    texto.textContent = mensagem;
+
+    toast.style.display = 'block';
+    toast.style.animation = 'none';
+    void toast.offsetWidth; // reiniciar animação
+    toast.style.animation = 'fadeInOut 3s forwards';
+
+    overlay.style.opacity = '1';
+    overlay.style.pointerEvents = 'auto';
+
+    setTimeout(() => {
+      toast.style.display = 'none';
+      overlay.style.opacity = '0';
+      overlay.style.pointerEvents = 'none';
+    }, 3000);
+  }
+
+
     async function carregarMercadorias() {
       try {
         const resposta = await fetch('http://localhost:3005/mercadorias');
         const mercadorias = await resposta.json();
         const lista = document.getElementById('lista');
         lista.innerHTML = '';
-        mercadorias.forEach(m => {
+        mercadorias.forEach((m, i) => {
           const div = document.createElement('div');
           div.className = 'mercadoria';
+          div.style.animationDelay = `${i * 0.05}s`;
           div.innerHTML = `
             <p><strong>ID:</strong> ${m.id}</p>
             <p><strong>Descrição:</strong> ${m.descricao}</p>
@@ -164,12 +277,13 @@
 
     async function exportarXML() {
       await fetch('http://localhost:3005/exportar/xml');
-      alert('Exportação concluída!');
+      window.location.href = 'http://localhost:3005/download/xml';
+      mostrarToast('Exportação concluída!');
     }
 
     async function importarXML() {
       await fetch('http://localhost:3005/importar/xml');
-      alert('Importação concluída!');
+      mostrarToast('Importação concluída!');
       carregarMercadorias();
     }
 

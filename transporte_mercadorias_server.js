@@ -1,5 +1,6 @@
 const express = require('express');
 const fs = require('fs');
+const path = require('path'); // <- ADICIONADO AQUI
 const bodyParser = require('body-parser');
 const xml2js = require('xml2js');
 const grpc = require('@grpc/grpc-js');
@@ -51,7 +52,6 @@ app.post('/mercadorias', (req, res) => {
     res.json({ message: 'Mercadoria adicionada', mercadoria: novaMercadoria });
 });
 
-
 app.delete('/mercadorias/:id', (req, res) => {
     let data = loadData();
     data = data.filter(m => m.id !== parseInt(req.params.id));
@@ -69,6 +69,16 @@ function exportarParaXML() {
 app.get('/exportar/xml', (req, res) => {
     exportarParaXML();
     res.json({ message: 'Exportação para XML concluída' });
+});
+
+// NOVA ROTA PARA FAZER DOWNLOAD DO XML
+app.get('/download/xml', (req, res) => {
+    const filePath = path.join(__dirname, 'mercadorias.xml');
+    res.download(filePath, 'mercadorias.xml', (err) => {
+        if (err) {
+            res.status(500).send('Erro ao fazer download.');
+        }
+    });
 });
 
 function importarDeXML() {
