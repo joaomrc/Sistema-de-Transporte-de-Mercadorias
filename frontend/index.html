@@ -38,6 +38,7 @@
       opacity: 0;
       animation: fadeInCard 0.5s ease forwards;
       transition: all 0.3s ease;
+      position: relative;
     }
 
     .mercadoria:hover {
@@ -51,6 +52,15 @@
 
     .mercadoria strong {
       color: #005b96;
+    }
+
+    .mercadoria button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      position: absolute;
+      top: 10px;
+      right: 10px;
     }
 
     form {
@@ -116,6 +126,24 @@
       z-index: 9999;
       display: none;
       animation: fadeInOut 3s forwards;
+      display: flex;
+      align-items: center;
+    }
+
+    .spinner {
+      width: 16px;
+      height: 16px;
+      border: 2px solid white;
+      border-top: 2px solid transparent;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
     }
 
     @keyframes fadeInOut {
@@ -126,23 +154,58 @@
     }
 
     #overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    backdrop-filter: blur(4px);
-    background-color: rgba(255, 255, 255, 0.3); /* leve camada branca transparente */
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.5s ease;
-    z-index: 9998;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      backdrop-filter: blur(4px);
+      background-color: rgba(0, 0, 0, 0.4);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+      z-index: 9998;
     }
 
+    #editModal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      z-index: 10000;
+      max-width: 400px;
+      width: 90%;
+    }
 
-    @keyframes fadeOverlay {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    #editModal input {
+      width: 100%;
+      margin: 0.5rem 0;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    #editModal button {
+      width: 100%;
+      padding: 0.6rem;
+      border: none;
+      border-radius: 6px;
+      font-family: 'Poppins', sans-serif;
+      background-color: #005b96;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      margin-top: 0.5rem;
+    }
+
+    #editModal button:hover {
+      background-color: #004377;
     }
 
     @keyframes fadeInUp {
@@ -198,31 +261,95 @@
     <div id="lista" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;"></div>
   </main>
 
-  <div id="toast"><span id="toast-message"></span></div>
+  <div id="toast">
+    <div class="spinner"></div>
+    <span id="toast-message" style="margin-left: 0.8rem;"></span>
+  </div>
+
+  <div id="editModal">
+    <h3>Editar Mercadoria</h3>
+    <input id="editDescricao" placeholder="Descrição" />
+    <input id="editOrigem" placeholder="Origem" />
+    <input id="editDestino" placeholder="Destino" />
+    <input id="editPeso" type="number" step="0.01" placeholder="Peso (kg)" />
+    <button id="guardarEdicao">Guardar</button>
+    <button onclick="fecharModalEdicao()" style="background-color: #ccc; color: #333;">Cancelar</button>
+  </div>
+
+  <audio id="toast-sound" src="https://cdn.pixabay.com/audio/2022/03/15/audio_fa25b5f9c0.mp3" preload="auto"></audio>
 
   <script>
-  function mostrarToast(mensagem) {
-    const toast = document.getElementById('toast');
-    const texto = document.getElementById('toast-message');
-    const overlay = document.getElementById('overlay');
+    let idEditando = null;
 
-    texto.textContent = mensagem;
+    function mostrarToast(mensagem) {
+      const toast = document.getElementById('toast');
+      const texto = document.getElementById('toast-message');
+      const overlay = document.getElementById('overlay');
+      const sound = document.getElementById('toast-sound');
 
-    toast.style.display = 'block';
-    toast.style.animation = 'none';
-    void toast.offsetWidth; // reiniciar animação
-    toast.style.animation = 'fadeInOut 3s forwards';
+      texto.textContent = mensagem;
+      toast.style.display = 'flex';
+      toast.style.animation = 'none';
+      void toast.offsetWidth;
+      toast.style.animation = 'fadeInOut 3s forwards';
 
-    overlay.style.opacity = '1';
-    overlay.style.pointerEvents = 'auto';
+      overlay.style.opacity = '1';
+      overlay.style.pointerEvents = 'auto';
 
-    setTimeout(() => {
-      toast.style.display = 'none';
-      overlay.style.opacity = '0';
-      overlay.style.pointerEvents = 'none';
-    }, 3000);
-  }
+      sound.currentTime = 0;
+      sound.play();
 
+      setTimeout(() => {
+        toast.style.display = 'none';
+        overlay.style.opacity = '0';
+        overlay.style.pointerEvents = 'none';
+      }, 3000);
+    }
+
+    function abrirModalEdicao(id, descricao, origem, destino, peso) {
+      idEditando = id;
+      document.getElementById('editDescricao').value = descricao;
+      document.getElementById('editOrigem').value = origem;
+      document.getElementById('editDestino').value = destino;
+      document.getElementById('editPeso').value = peso;
+      document.getElementById('editModal').style.display = 'block';
+    }
+
+    function fecharModalEdicao() {
+      document.getElementById('editModal').style.display = 'none';
+      idEditando = null;
+    }
+
+    document.getElementById('guardarEdicao').addEventListener('click', async () => {
+      const descricao = document.getElementById('editDescricao').value;
+      const origem = document.getElementById('editOrigem').value;
+      const destino = document.getElementById('editDestino').value;
+      const peso = parseFloat(document.getElementById('editPeso').value);
+
+      if (!descricao || !origem || !destino || isNaN(peso)) {
+        alert('Por favor, preencha todos os campos corretamente.');
+        return;
+      }
+
+      mostrarToast('Guardando alterações...');
+
+      try {
+        const resposta = await fetch(`http://localhost:3005/mercadorias/${idEditando}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ descricao, origem, destino, peso })
+        });
+
+        const resultado = await resposta.text();
+        console.log("Resposta da API:", resultado);
+
+        fecharModalEdicao();
+        carregarMercadorias();
+      } catch (erro) {
+        console.error("Erro ao guardar alterações:", erro);
+        alert('Erro ao guardar alterações.');
+      }
+    });
 
     async function carregarMercadorias() {
       try {
@@ -240,6 +367,14 @@
             <p><strong>Origem:</strong> ${m.origem}</p>
             <p><strong>Destino:</strong> ${m.destino}</p>
             <p><strong>Peso:</strong> ${m.peso} kg</p>
+            <button onclick='abrirModalEdicao(${m.id}, ${JSON.stringify(m.descricao)}, ${JSON.stringify(m.origem)}, ${JSON.stringify(m.destino)}, ${m.peso})'>
+              <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" width="20" fill="#005b96">
+                <path d="M0 0h24v24H0V0z" fill="none"/>
+                <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 
+                7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34a.9959.9959 
+                0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+              </svg>
+            </button>
           `;
           lista.appendChild(div);
         });
@@ -257,6 +392,7 @@
         peso: parseFloat(document.getElementById('peso').value)
       };
 
+      mostrarToast('Adicionando mercadoria...');
       await fetch('http://localhost:3005/mercadorias', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -270,18 +406,22 @@
     document.getElementById('formRemover').addEventListener('submit', async e => {
       e.preventDefault();
       const id = document.getElementById('idRemover').value;
+
+      mostrarToast('Removendo mercadoria...');
       await fetch(`http://localhost:3005/mercadorias/${id}`, { method: 'DELETE' });
       e.target.reset();
       carregarMercadorias();
     });
 
     async function exportarXML() {
+      mostrarToast('Exportando para XML...');
       await fetch('http://localhost:3005/exportar/xml');
       window.location.href = 'http://localhost:3005/download/xml';
       mostrarToast('Exportação concluída!');
     }
 
     async function importarXML() {
+      mostrarToast('Importando de XML...');
       await fetch('http://localhost:3005/importar/xml');
       mostrarToast('Importação concluída!');
       carregarMercadorias();

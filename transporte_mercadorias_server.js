@@ -52,6 +52,28 @@ app.post('/mercadorias', (req, res) => {
     res.json({ message: 'Mercadoria adicionada', mercadoria: novaMercadoria });
 });
 
+app.put('/mercadorias/:id', (req, res) => {
+    const data = loadData();
+    const id = parseInt(req.params.id);
+    const index = data.findIndex(m => m.id === id);
+
+    if (index === -1) {
+        return res.status(404).json({ message: 'Mercadoria não encontrada' });
+    }
+
+    data[index] = {
+        ...data[index],
+        descricao: req.body.descricao,
+        origem: req.body.origem,
+        destino: req.body.destino,
+        peso: req.body.peso
+    };
+
+    saveData(data);
+    res.json({ message: 'Mercadoria atualizada com sucesso', mercadoria: data[index] });
+});
+
+
 app.delete('/mercadorias/:id', (req, res) => {
     let data = loadData();
     data = data.filter(m => m.id !== parseInt(req.params.id));

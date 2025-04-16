@@ -134,5 +134,12 @@
         "peso": [
             "63.1"
         ]
+    },
+    {
+        "id": 10,
+        "descricao": "Móveis",
+        "origem": "Beja",
+        "destino": "Santarém",
+        "peso": 110
     }
 ]
