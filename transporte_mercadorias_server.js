@@ -35,10 +35,22 @@ app.get('/mercadorias', (req, res) => {
 
 app.post('/mercadorias', (req, res) => {
     const data = loadData();
-    data.push(req.body);
+
+    const novoId = data.length > 0 ? Math.max(...data.map(m => m.id)) + 1 : 1;
+
+    const novaMercadoria = {
+        id: novoId,
+        descricao: req.body.descricao,
+        origem: req.body.origem,
+        destino: req.body.destino,
+        peso: req.body.peso
+    };
+
+    data.push(novaMercadoria);
     saveData(data);
-    res.json({ message: 'Mercadoria adicionada' });
+    res.json({ message: 'Mercadoria adicionada', mercadoria: novaMercadoria });
 });
+
 
 app.delete('/mercadorias/:id', (req, res) => {
     let data = loadData();
