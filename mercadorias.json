@@ -1,139 +1,52 @@
 [
     {
-        "id": [
-            "1"
-        ],
-        "descricao": [
-            "Computadores portáteis"
-        ],
-        "origem": [
-            "Lisboa"
-        ],
-        "destino": [
-            "Porto"
-        ],
-        "peso": [
-            "120.5"
-        ]
+        "id": 1,
+        "descricao": "Computadores portáteis",
+        "origem": "Lisboa",
+        "destino": "Porto",
+        "peso": 120.5
     },
     {
-        "id": [
-            "2"
-        ],
-        "descricao": [
-            "Cadeiras de escritório"
-        ],
-        "origem": [
-            "Braga"
-        ],
-        "destino": [
-            "Coimbra"
-        ],
-        "peso": [
-            "300.2"
-        ]
+        "id": 2,
+        "descricao": "Cadeiras de escritório",
+        "origem": "Braga",
+        "destino": "Coimbra",
+        "peso": 300.2
     },
     {
-        "id": [
-            "4"
-        ],
-        "descricao": [
-            "Pneus"
-        ],
-        "origem": [
-            "Almeirim"
-        ],
-        "destino": [
-            "Braga"
-        ],
-        "peso": [
-            "430.5"
-        ]
+        "id": 5,
+        "descricao": "Monitores LCD",
+        "origem": "Faro",
+        "destino": "Aveiro",
+        "peso": 210
     },
     {
-        "id": [
-            "5"
-        ],
-        "descricao": [
-            "Monitores LCD"
-        ],
-        "origem": [
-            "Faro"
-        ],
-        "destino": [
-            "Aveiro"
-        ],
-        "peso": [
-            "210"
-        ]
+        "id": 6,
+        "descricao": "Roupa",
+        "origem": "Santarém",
+        "destino": "Porto",
+        "peso": 43.5
     },
     {
-        "id": [
-            "6"
-        ],
-        "descricao": [
-            "Roupa"
-        ],
-        "origem": [
-            "Santarém"
-        ],
-        "destino": [
-            "Porto"
-        ],
-        "peso": [
-            "43.5"
-        ]
+        "id": 7,
+        "descricao": "Tecidos",
+        "origem": "Bragança",
+        "destino": "Alpiarça",
+        "peso": 13.7
     },
     {
-        "id": [
-            "7"
-        ],
-        "descricao": [
-            "Tecidos"
-        ],
-        "origem": [
-            "Bragança"
-        ],
-        "destino": [
-            "Alpiarça"
-        ],
-        "peso": [
-            "13.7"
-        ]
+        "id": 8,
+        "descricao": "Roupa de inverno",
+        "origem": "Lisboa",
+        "destino": "Porto",
+        "peso": 120
     },
     {
-        "id": [
-            "8"
-        ],
-        "descricao": [
-            "Roupa de inverno"
-        ],
-        "origem": [
-            "Lisboa"
-        ],
-        "destino": [
-            "Porto"
-        ],
-        "peso": [
-            "120"
-        ]
-    },
-    {
-        "id": [
-            "9"
-        ],
-        "descricao": [
-            "Loiças"
-        ],
-        "origem": [
-            "Faro"
-        ],
-        "destino": [
-            "Viseu"
-        ],
-        "peso": [
-            "63.1"
-        ]
+        "id": 9,
+        "descricao": "Loiças",
+        "origem": "Faro",
+        "destino": "Viseu",
+        "peso": 63.1
     },
     {
         "id": 10,
@@ -141,5 +54,33 @@
         "origem": "Beja",
         "destino": "Santarém",
         "peso": 110
+    },
+    {
+        "id": 11,
+        "descricao": "Materiais de construção",
+        "origem": "Setúbal",
+        "destino": "Évora",
+        "peso": 980.5
+    },
+    {
+        "id": 12,
+        "descricao": "Materiais de construção",
+        "origem": "Setúbal",
+        "destino": "Évora",
+        "peso": 980.5
+    },
+    {
+        "id": 14,
+        "descricao": "Impressoras 3D",
+        "origem": "Lisboa",
+        "destino": "Leiria",
+        "peso": 75.5
+    },
+    {
+        "id": 13,
+        "descricao": "Livros escolares",
+        "origem": "Lisboa",
+        "destino": "Porto",
+        "peso": 55
     }
 ]
