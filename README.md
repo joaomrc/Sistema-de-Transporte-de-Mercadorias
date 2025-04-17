@@ -89,8 +89,17 @@ type Mercadoria {
 ---
 ---
 
+## Vídeo de demonstração:
+Demonstração completa do funcionamento do projeto **Sistema de Transporte de Mercadorias** no seguinte video, incluindo:
+- A inicialização do servidor via Docker Compose.
+- Testes de operações CRUD (Create, Read, Update, Delete).
+- Visualização da estrutura do projeto e dos dados de exemplo utilizados.
+
+https://github.com/user-attachments/assets/495a1c96-3cf0-477f-8c83-ad21185b821b
+
+
+---
+---
+
 ## Autor
 *João Coelho*
-
-
-
