@@ -1,10 +1,11 @@
+<sub>Trabalho Prático Individual: Desenvolvimento de Serviços Web Multitecnologia</sub>
 # Sistema de Gestão de Mercadorias
 
 Este trabalho consiste na criação de um servidor com um **CRUD** (Create, Read, Update, Delete) em **Node.js** para gerir um conjunto de mercadorias. O objetivo principal é fornecer uma **API** que permita realizar operações sobre dados de mercadorias de forma eficiente e flexível.
 
 As operações disponíveis incluem a consulta da lista completa de mercadorias armazenadas, bem como a adição de novas entradas. Os dados são persistidos localmente num ficheiro `mercadorias.json`, simulando uma base de dados.
 
-Este servidor foi construído com o intuito de ser simples, modular e de fácil utilização, tanto em ambiente local como para testes em ferramentas como o Postman ou através da interface gráfica.
+Este servidor foi construído com o intuito de ser simples e de fácil utilização, tanto em ambiente local como para testes em ferramentas como o Postman ou através da interface gráfica.
 
 ## Stack utilizada
 - Node.js
@@ -16,6 +17,29 @@ Este servidor foi construído com o intuito de ser simples, modular e de fácil 
 - Docker
 - Postman
 
+---
+---
+
+## Instruções de Execução
+
+### 1. Clonar o repositório
+
+```bash
+git clone https://github.com/joaomrc/Sistema-de-Transporte-de-Mercadorias
+```
+
+### 2. Aceder à pasta do projeto
+```
+cd Sistema-de-Transporte-de-Mercadorias
+```
+
+### 3. Construir e iniciar os serviços
+```
+docker compose up --build
+```
+Após a execução é necessário aguardar que todos os serviços estejam ativos. Após isso, deverá aparecer no terminal que os servidores REST, GraphQL, gRPC e SOAP estão a correr corretamente.
+
+---
 ---
 
 ## Exemplos de Chamadas (Postman)
@@ -41,15 +65,18 @@ Este servidor foi construído com o intuito de ser simples, modular e de fácil 
 ### POST SOAP - Listar Mercadorias
 ![POST SOAP - Listar Mercadorias](https://github.com/user-attachments/assets/91ce97d2-dfd7-422b-bb2e-57d66ba240d1)
 
+---
+---
+
 ## Esquema de Validação
 A estrutura de cada mercadoria segue este formato:
 ```
 type Mercadoria {
-  id: Int!
-  descricao: String!
-  origem: String!
-  destino: String!
-  peso: Float!
+  id: Int;
+  descricao: String;
+  origem: String;
+  destino: String;
+  peso: Float;
 }
 ```
 
@@ -59,8 +86,11 @@ type Mercadoria {
 - **origem e destino:** strings representando cidades válidas.
 - **peso:** número decimal maior que zero.
 
+---
+---
+
 ## Autor
-João Coelho
+*João Coelho*
 
 
 
