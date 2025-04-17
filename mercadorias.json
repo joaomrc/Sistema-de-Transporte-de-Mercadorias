@@ -82,5 +82,40 @@
         "origem": "Lisboa",
         "destino": "Porto",
         "peso": 55
+    },
+    {
+        "id": 15,
+        "descricao": "Equipamento hospitalar",
+        "origem": "Braga",
+        "destino": "Coimbra",
+        "peso": 140.5
+    },
+    {
+        "id": 16,
+        "descricao": "Electrodomésticos",
+        "origem": "Aveiro",
+        "destino": "Lisboa",
+        "peso": 320
+    },
+    {
+        "id": 17,
+        "descricao": "Peças automóvel",
+        "origem": "Porto",
+        "destino": "Faro",
+        "peso": 320.2
+    },
+    {
+        "id": 18,
+        "descricao": "Equipamento agrícola",
+        "origem": "Guarda",
+        "destino": "Bragança",
+        "peso": 820.6
+    },
+    {
+        "id": 19,
+        "descricao": "Roupa e têxteis",
+        "origem": "Leiria",
+        "destino": "Setúbal",
+        "peso": 96.2
     }
 ]
