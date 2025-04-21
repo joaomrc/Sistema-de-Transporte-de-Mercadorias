@@ -8,13 +8,13 @@ const protoLoader = require('@grpc/proto-loader');
 const PROTO_PATH = './transporte.proto';
 const packageDefinition = protoLoader.loadSync(PROTO_PATH, {});
 const transporteProto = grpc.loadPackageDefinition(packageDefinition).transporte;
-const grpcClient = new transporteProto.Transporte('localhost:50051', grpc.credentials.createInsecure());
+const grpcClient = new transporteProto.Transporte('192.168.246.58:50051', grpc.credentials.createInsecure());
 
-const REST_URL = 'http://localhost:3000';
+const REST_URL = 'http://192.168.246.58:3000';
 
-const GRAPHQL_URL = 'http://localhost:4000/graphql';
+const GRAPHQL_URL = 'http://192.168.246.58:4000/graphql';
 
-const SOAP_URL = 'http://localhost:8000/soap?wsdl';
+const SOAP_URL = 'http://192.168.246.58:8000/soap?wsdl';
 
 // FUNÇÕES
 

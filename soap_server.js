@@ -55,7 +55,7 @@ const wsdl = `
 
     <service name="MercadoriaService">
         <port name="MercadoriaPort" binding="tns:MercadoriaBinding">
-            <soap:address location="http://localhost:3001/soap"/>
+            <soap:address location="http://192.168.246.58:3001/soap"/>
         </port>
     </service>
 </definitions>

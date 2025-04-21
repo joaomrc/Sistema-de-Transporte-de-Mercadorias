@@ -333,7 +333,7 @@
       mostrarToast('Guardando alterações...');
 
       try {
-        const resposta = await fetch(`http://localhost:3005/mercadorias/${idEditando}`, {
+        const resposta = await fetch(`http://192.168.246.58:3005/mercadorias/${idEditando}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ descricao, origem, destino, peso })
@@ -352,7 +352,7 @@
 
     async function carregarMercadorias() {
       try {
-        const resposta = await fetch('http://localhost:3005/mercadorias');
+        const resposta = await fetch('http://192.168.246.58:3005/mercadorias');
         const mercadorias = await resposta.json();
         const lista = document.getElementById('lista');
         lista.innerHTML = '';
@@ -392,7 +392,7 @@
       };
 
       mostrarToast('Adicionando mercadoria...');
-      await fetch('http://localhost:3005/mercadorias', {
+      await fetch('http://192.168.246.58:3005/mercadorias', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(dados)
@@ -407,21 +407,21 @@
       const id = document.getElementById('idRemover').value;
 
       mostrarToast('Removendo mercadoria...');
-      await fetch(`http://localhost:3005/mercadorias/${id}`, { method: 'DELETE' });
+      await fetch(`http://192.168.246.58:3005/mercadorias/${id}`, { method: 'DELETE' });
       e.target.reset();
       carregarMercadorias();
     });
 
     async function exportarXML() {
       mostrarToast('Exportando para XML...');
-      await fetch('http://localhost:3005/exportar/xml');
-      window.location.href = 'http://localhost:3005/download/xml';
+      await fetch('http://192.168.246.58:3005/exportar/xml');
+      window.location.href = 'http://192.168.246.58:3005/download/xml';
       mostrarToast('Exportação concluída!');
     }
 
     async function importarXML() {
       mostrarToast('Importando de XML...');
-      await fetch('http://localhost:3005/importar/xml');
+      await fetch('http://192.168.246.58:3005/importar/xml');
       mostrarToast('Importação concluída!');
       carregarMercadorias();
     }
