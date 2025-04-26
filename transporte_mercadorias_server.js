@@ -93,7 +93,6 @@ app.get('/exportar/xml', (req, res) => {
     res.json({ message: 'Exportação para XML concluída' });
 });
 
-// NOVA ROTA PARA FAZER DOWNLOAD DO XML
 app.get('/download/xml', (req, res) => {
     const filePath = path.join(__dirname, 'mercadorias.xml');
     res.download(filePath, 'mercadorias.xml', (err) => {

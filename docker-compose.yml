@@ -4,8 +4,8 @@ services:
       context: .
       dockerfile: Dockerfile.rest_grpc
     ports:
-      - "3005:3000"    # REST API
-      - "50051:50051"  # gRPC
+      - "3005:3000"
+      - "50051:50051"
     volumes:
       - ./mercadorias.json:/app/mercadorias.json
     restart: always

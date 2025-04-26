@@ -104,9 +104,8 @@ async function exportarXML() {
 }
 
 // EXECUÇÃO
-
 async function main() {
-    console.log('\n--- Transporte de Mercadorias ---');
+    console.log('\n Transporte de Mercadorias ');
 
     await listarREST();
     await listarGraphQL();
